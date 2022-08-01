@@ -1,0 +1,57 @@
+{
+  "name": "be-mountain",
+  "version": "1.0.0",
+  "description": "be-mountain",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "postinstall": "link-module-alias",
+    "lint": "eslint src --ext .js",
+    "lint:fix": "npm run lint -- --fix",
+    "test:http": "DEBUG=-app:* mocha --exit './src/http/**/*.spec.js'",
+    "test:watch": "NODE_ENV=test DEBUG=-app:* mocha --watch './src/**/*.spec.js'",
+    "test": "NODE_ENV=test DEBUG=-app:* mocha --exit './src/**/*.spec.js'",
+    "docs": "apidoc -i src/http/components -o src/http/public/docs/ -f \".*router.js$\"",
+    "queue": "node ./src/workers/queue.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iabo/be-mountain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iabo/be-mountain/issues"
+  },
+  "homepage": "https://github.com/iabo/be-mountain#readme",
+  "_moduleAliases": {
+    "#api": "src/api",
+    "#test": "test",
+    "#database": "src/database",
+    "#vendor": "src/vendor"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "dotenv": "^16.0.1",
+    "dotenv-expand": "^8.0.3",
+    "knex": "^2.2.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^6.1.0",
+    "koa-logger": "^3.2.1",
+    "koa-respond": "^2.1.0",
+    "koa-static": "^5.0.0",
+    "link-module-alias": "^1.2.0",
+    "mysql": "^2.18.1",
+    "objection": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "mocha": "^10.0.0",
+    "supertest": "^6.1.6"
+  }
+}

@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  database:
+    build: ./database
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    restart: always
+    ports:
+      - "7306:3306"
+  api:
+    build: ./src
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: database
+    ports:
+      - "7301:7301"
+    depends_on:
+      - database
+    restart: on-failure
